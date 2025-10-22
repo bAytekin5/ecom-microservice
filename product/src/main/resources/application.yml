@@ -2,15 +2,25 @@ spring:
   application:
     name: product-service
 
-  h2:
-    console:
-      enabled: true
+  #  h2:
+  #    console:
+  #      enabled: true
+  #  datasource:
+  #    url: jdbc:h2:mem:test
+  #  jpa:
+  #    show-sql: true
+  #    hibernate:
+  #      ddl-auto: update
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:postgresql://localhost:5432/product
+    username: ecom
+    password: ecom
   jpa:
+    database: POSTGRESQL
     show-sql: true
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
   port: 8081
 logging:

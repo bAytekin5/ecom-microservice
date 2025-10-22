@@ -22,20 +22,11 @@ public class OrderService {
     private final CartService cartService;
 
     public Optional<OrderResponse> createOrder(String userId) {
-        // validate cart items
         List<CartItem> cartItems = cartService.getCart(userId);
         if (cartItems.isEmpty()) {
             return Optional.empty();
         }
 
-        // validate for user
-//        Optional<User> userOptional = userRepository.findById(Long.valueOf(userId));
-//        if (userOptional.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        User user = userOptional.get();
-
-        // total price
         BigDecimal totalPrice = cartItems.stream()
                 .map(CartItem::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
